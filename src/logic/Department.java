@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import logic.GuildMember; 
 
 public class Department {
 	private String name;
@@ -9,50 +10,53 @@ public class Department {
 	public Department(String name) {
 		//TODO: Write a constructor here. Initialize a new ArrayList of departmentMembers and set the name of the department.
 		this.name = name ;
-		this.departmentMembers = new ArrayList<GuildMember>() ; 
-
+		this.departmentMembers = new ArrayList<GuildMember>() ;
 	}
 	
 	public boolean setName(String name) {
 		//TODO: Set name of the department. If the name is blank, return false.
-		if ()
-	 		
-		
+		if (name.equals("")) {
+			return false ;
+		}else {
+			this.name = name ;
+			return true ;
 		}
-		
-		
-	} 
+	}
 	
 	public String getName() {
 		//TODO: Return the name of the department.
-		
-		return null;
+		return this.name;
 	}
 	
 	public void addMember(GuildMember m) {
 		//TODO: Add the a guild member to the guild and set their department to this one.
+		this.departmentMembers.add(m) ;
+		m.setMyDepartment(this.name); 
 	}
 	
 	public void addMultipleMembers(ArrayList<GuildMember> memberList) {
 		//TODO: Add all guild members in memberList to this department. Don't forget to set the department as well.
+		for (GuildMember member : memberList) {
+			this.departmentMembers.add(member) ;
+			member.setMyDepartment(this.name);
+		}
 	}
 	
 	public GuildMember removeMember(int index) {
 		//TODO: Remove a member from a given index, and returns the removed member.
-		
-		return null;
+		GuildMember removed_name = departmentMembers.get(index) ;
+		departmentMembers.remove(index) ;
+		return removed_name ;
 	}
 	
 	public GuildMember getMember(int index) {
-		//TODO: Get a member from a given index.
-		
-		return null;
+		//TODO: Get a member from a give index.
+		return departmentMembers.get(index) ;
 	}
 	
 	public ArrayList<GuildMember> getAllMembers(){
 		//TODO: Return all members in this department.
-		
-		return null;
+		return departmentMembers ;
 	}
 	
 	//------------------------------------------

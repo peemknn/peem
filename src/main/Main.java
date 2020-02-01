@@ -2,6 +2,7 @@ package main;
 
 import logic.*;
 
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,20 +14,31 @@ public class Main {
 	public static boolean addDepartment(String newName) {
 		//TODO: Does one of three things, depends on the inputed name.
 		
+		
 		//TODO: If newName is blank, then warn the user that
 		//the department name cannot be blank and return false.
-		
+		if (newName.equals("") ) {
+			System.out.println("the department name cannot be blank");
+			return false;
+		}
 		//TODO: If newName duplicates with an existing department, then warn 
 		//the user that the department name cannot be duplicate and
 		//return false.
 		//HINT: createDepartment from GuildDatabase returns a boolean
 		//for a good reason.
+		 if (myDatabase.createDepartment(newName)) { 
+			   System.out.println("Department created"); 
+			   return true ; 
+			  }else { 
+			   System.out.println("Duplicated department"); 
+			   return false ; 
+			  }
 		
 		//TODO: If it's not blank and not a duplicate,
 		//create the department normally, print a message
 		//that the department has been created, and return true.
 		
-		return false;
+		
 	}
 	
 	public static void removeDepartmentFromDatabase(int index) {
@@ -38,6 +50,7 @@ public class Main {
 		//for a good reason.
 		
 		//TODO: Print a message that the department is removed and that all members are moved to the unassigned department.
+		myDatabase.getDepartment(0).addMultipleMembers(myDatabase.removeDepartment(index));
 	}
 	
 	//------------------------------------------
